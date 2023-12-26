@@ -1,6 +1,6 @@
 import {cart,addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
-
+import { decimalFormat } from '../utils/money.js';
 
 
 function noOfItems(){
@@ -35,7 +35,7 @@ function html(){
     </div>
     
     <div class="product-price">
-    $${((product.priceCents)/100).toFixed(2)}
+    $${decimalFormat(product.priceCents)}
     </div>
     
     <div class="product-quantity-container">
