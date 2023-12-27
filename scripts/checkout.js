@@ -1,18 +1,7 @@
-import {cart} from '../data/cart.js';
+import {cart,deleteCart} from '../data/cart.js';
 import {products as product} from '../data/products.js';
 import {decimalFormat} from '../utils/money.js';
 let html="";
-function deleteCart(productId){
-  let i=0;
-  cart.forEach((product,index)=>{
-    if(product.id === productId){
-      i=index;
-    }
-
-  })
-cart.splice(i,1);
-
-}
 function renderPage(matchingItem,items){
   html +=`<div class="cart-item-container js-cart-${matchingItem.id}">
   <div class="delivery-date">
@@ -96,7 +85,6 @@ cart.forEach((items)=>{
   product.forEach((item2)=>{
     if(item2.id===productId){
       matchingItem = item2;
-      return;
     }
   })
     console.log(matchingItem);
@@ -105,22 +93,28 @@ cart.forEach((items)=>{
   })
 
 document.querySelector(".order-summary").innerHTML=html;
-document.querySelectorAll(".js-delete-link").forEach((link) => {
-  link.addEventListener('click', () => {
-    const productId = link.dataset.productId;
-    deleteCart(productId);
-    
-    let matchingItem = ''; 
-    product.forEach((item2) => {
-      if (item2.id === productId) {
-        matchingItem = item2;
-        return;
-      }
-    });
 
-    const removeContainer = document.querySelector(`.js-cart-${matchingItem.id}`);
-    if (removeContainer) {
-      removeContainer.remove();
+document.querySelectorAll(".js-delete-link").forEach((link) => {
+  link.addEventListener('click',()=>{
+    deleteCart(link.dataset.productId);
+    const removeContainer = document.querySelector(`.js-cart-${link.dataset.productId}`);
+    if(removeContainer){
+    removeContainer.remove();
     }
-  });
-});
+    })
+  }); 
+//    const productId = link.dataset.productId;
+//     deleteCart(productId);
+    
+//     let matchingItem = ''; 
+//     product.forEach((item2) => {
+//       if (item2.id === productId) {
+//         matchingItem = item2;
+//       }
+//     });
+
+//     const removeContainer = document.querySelector(`.js-cart-${matchingItem.id}`);
+//     if (removeContainer) {
+//       removeContainer.remove();
+//     }
+//   });
