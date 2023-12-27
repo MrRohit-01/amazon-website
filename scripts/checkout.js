@@ -2,7 +2,7 @@ import {cart,deleteCart} from '../data/cart.js';
 import {products as product} from '../data/products.js';
 import {decimalFormat} from '../utils/money.js';
 let html="";
-function renderPage(matchingItem,items){
+function renderPage(matchingItem,cartItems){
   html +=`<div class="cart-item-container js-cart-${matchingItem.id}">
   <div class="delivery-date">
     Delivery date: Tuesday, June 21
@@ -21,7 +21,7 @@ function renderPage(matchingItem,items){
       </div>
       <div class="product-quantity">
         <span>
-          Quantity: <span class="quantity-label">${items.quantity}</span>
+          Quantity: <span class="quantity-label">${cartItems.quantity}</span>
         </span>
         <span class="update-quantity-link link-primary">
           Update
@@ -79,16 +79,18 @@ function renderPage(matchingItem,items){
   </div>
 </div>`
 }
-cart.forEach((items)=>{
-  let productId = items.id;
+
+cart.forEach((cartItems)=>{
+  let productId = cartItems.id;
   let matchingItem;
   product.forEach((item2)=>{
-    if(item2.id===productId){
+    if(productId===item2.id){
       matchingItem = item2;
     }
   })
     console.log(matchingItem);
-   renderPage(matchingItem,items);
+    console.log(cartItems);
+   renderPage(matchingItem,cartItems);
    
   })
 
@@ -102,19 +104,4 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     removeContainer.remove();
     }
     })
-  }); 
-//    const productId = link.dataset.productId;
-//     deleteCart(productId);
-    
-//     let matchingItem = ''; 
-//     product.forEach((item2) => {
-//       if (item2.id === productId) {
-//         matchingItem = item2;
-//       }
-//     });
-
-//     const removeContainer = document.querySelector(`.js-cart-${matchingItem.id}`);
-//     if (removeContainer) {
-//       removeContainer.remove();
-//     }
-//   });
+  });

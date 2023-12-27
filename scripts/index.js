@@ -1,7 +1,6 @@
-import {cart,addToCart} from '../data/cart.js';
+import {cart,addToCart,saveToStorage} from '../data/cart.js';
 import {products} from '../data/products.js';
 import { decimalFormat } from '../utils/money.js';
-
 
 function noOfItems(){
   let cartQuantity = document.querySelector('.cart-quantity');
@@ -78,6 +77,6 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
     addToCart(productId);
       console.log(cart);
       noOfItems();
-      
+      saveToStorage(cart)
     })})
     
