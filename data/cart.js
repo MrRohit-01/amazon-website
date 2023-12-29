@@ -22,8 +22,6 @@ export function addToCart(productId){
       }
 }
 export function deleteCart(productId){
-  let newCart=[];
-  let i=0;
   cart = cart.filter((product)=>product.id!=productId)
   saveToStorage(cart);
 }
