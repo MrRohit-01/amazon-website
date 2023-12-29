@@ -99,7 +99,7 @@ document.querySelector(".order-summary").innerHTML=html;
 document.querySelectorAll(".js-update-link").forEach((update)=>{
 update.addEventListener('click',()=>{
   const updateInput =document.querySelector('.js-input-update');
-updateInput.textContent=`<input type="text">`;
+updateInput.innerHTML=`<input type="text">`;
 })
 })
 
