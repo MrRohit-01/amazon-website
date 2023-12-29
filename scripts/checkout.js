@@ -2,6 +2,11 @@ import {cart,deleteCart} from '../data/cart.js';
 import {products as product} from '../data/products.js';
 import {decimalFormat} from '../utils/money.js';
 let html="";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+
+import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
+hello()
+console.log(dayjs().add(7,'day').format('dddd,MMMM,DD'));
 function renderPage(matchingItem,cartItems){
   html +=`<div class="cart-item-container js-cart-${matchingItem.id}">
   <div class="delivery-date">
@@ -88,8 +93,8 @@ cart.forEach((cartItems)=>{
       matchingItem = item2;
     }
   })
-    console.log(matchingItem);
-    console.log(cartItems);
+    // console.log(matchingItem);
+    // console.log(cartItems);
    renderPage(matchingItem,cartItems);
    
   })
